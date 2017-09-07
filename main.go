@@ -43,15 +43,17 @@ func main() {
 		return
 	}
 
-	for i := 0; i < 1000; i++ {
-		go callee.ServeInvite()
-		<-time.After(time.Millisecond)
-		go caller.Invite(callee)
-		<-time.After(time.Millisecond)
-		go callee.Bye(caller)
-		<-time.After(time.Millisecond)
-	}
+	go forever()
+	select {}
+}
 
+func forever() {
+	for {
+		time.Sleep(25 * time.Millisecond)
+		go callee.ServeInvite()
+		go caller.Invite(callee)
+		go callee.Bye(caller)
+	}
 }
 
 func init() {

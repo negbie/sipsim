@@ -151,7 +151,7 @@ func (caller *EndPoint) nonInvite(callee *EndPoint, method base.Method) error {
 		},
 		"",
 	)
-	caller.dialog.cseq += 1
+	caller.dialog.cseq++
 
 	log.Info("Sending: %v", request.Short())
 	tx := caller.tm.Send(request, fmt.Sprintf("%v:%v", callee.Host, callee.Port))
