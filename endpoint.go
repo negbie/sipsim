@@ -64,7 +64,7 @@ func (caller *EndPoint) Invite(callee *EndPoint) error {
 	   	tag := "tag." + caller.UserName + "." + caller.Host */
 	callid := GenerateCallID()
 	tag := GenerateTag()
-	branch := "z9hG4bK" + "." + GenerateBranch()
+	branch := GenerateBranch()
 	caller.dialog.callId = callid
 	caller.dialog.from_tag = tag
 	caller.dialog.currentTx = txInfo{}
@@ -132,7 +132,7 @@ func (caller *EndPoint) Bye(callee *EndPoint) error {
 }
 
 func (caller *EndPoint) nonInvite(callee *EndPoint, method base.Method) error {
-	caller.dialog.currentTx.branch = "z9hG4bK" + "." + GenerateBranch()
+	caller.dialog.currentTx.branch = GenerateBranch()
 	request := base.NewRequest(
 		method,
 		&base.SipUri{
