@@ -25,13 +25,13 @@ var (
 		DisplayName: "Bob Phone",
 		UserName:    "bob",
 		Host:        "127.0.0.1",
-		Port:        5060,
+		Port:        5064,
 		Transport:   "UDP",
 	}
 )
 
 func main() {
-	log.SetDefaultLogLevel(log.WARN)
+	log.SetDefaultLogLevel(log.SEVERE)
 	err := caller.Start()
 	if err != nil {
 		log.Warn("Failed to start caller: %v", err)
@@ -49,7 +49,7 @@ func main() {
 
 func forever() {
 	for {
-		time.Sleep(25 * time.Millisecond)
+		time.Sleep(20 * time.Millisecond)
 		go callee.ServeInvite()
 		go caller.Invite(callee)
 		go callee.Bye(caller)
