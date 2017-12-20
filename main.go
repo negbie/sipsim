@@ -49,7 +49,7 @@ func main() {
 
 func forever() {
 	for {
-		time.Sleep(20 * time.Millisecond)
+		time.Sleep(25 * time.Millisecond)
 		go callee.ServeInvite()
 		go caller.Invite(callee)
 		go callee.Bye(caller)
